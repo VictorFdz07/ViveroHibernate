@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2021 10:32:51 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Vivero" table="vivero" catalog="vivero" optimistic-lock="version">
+        <id name="idVivero" type="java.lang.Integer">
+            <column name="idVivero" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="personal" class="entity.Personal" fetch="select">
+            <column name="ResponsablePersonal" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="teléfono" type="string">
+            <column name="teléfono" length="10" not-null="true" />
+        </property>
+        <property name="dirección" type="string">
+            <column name="dirección" length="45" not-null="true" />
+        </property>
+        <set name="zonas" table="zona" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Vivero_idVivero" not-null="true" />
+            </key>
+            <one-to-many class="entity.Zona" />
+        </set>
+    </class>
+</hibernate-mapping>

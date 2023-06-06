@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2021 10:32:51 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Producto" table="producto" catalog="vivero" optimistic-lock="version">
+        <id name="idProducto" type="java.lang.Integer">
+            <column name="idProducto" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="categoría" type="string">
+            <column name="categoría" length="45" not-null="true" />
+        </property>
+        <property name="precio" type="float">
+            <column name="precio" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="existenciaTotal" type="java.lang.Integer">
+            <column name="existencia_total" />
+        </property>
+        <set name="plantas" table="planta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Producto_idProducto" not-null="true" />
+            </key>
+            <one-to-many class="entity.Planta" />
+        </set>
+        <set name="existencias" table="existencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Producto_idProducto" not-null="true" />
+            </key>
+            <one-to-many class="entity.Existencia" />
+        </set>
+    </class>
+</hibernate-mapping>

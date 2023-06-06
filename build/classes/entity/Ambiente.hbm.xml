@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2021 10:32:51 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Ambiente" table="ambiente" catalog="vivero" optimistic-lock="version">
+        <id name="idAmbiente" type="java.lang.Integer">
+            <column name="idAmbiente" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="zona" class="entity.Zona" fetch="select">
+            <column name="Zona_idZona" not-null="true" />
+        </many-to-one>
+        <property name="humedad" type="float">
+            <column name="humedad" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="temperatura" type="float">
+            <column name="temperatura" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="fechahr" type="date">
+            <column name="fechahr" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

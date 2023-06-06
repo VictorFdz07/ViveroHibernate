@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2021 10:32:51 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Planta" table="planta" catalog="vivero" optimistic-lock="version">
+        <id name="idPlanta" type="java.lang.Integer">
+            <column name="idPlanta" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="producto" class="entity.Producto" fetch="select">
+            <column name="Producto_idProducto" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="clima" type="string">
+            <column name="clima" length="20" not-null="true" />
+        </property>
+        <property name="humedad" type="float">
+            <column name="humedad" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="cuidadosEsp" type="string">
+            <column name="cuidados_esp" length="45" not-null="true" />
+        </property>
+        <property name="luz" type="string">
+            <column name="luz" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

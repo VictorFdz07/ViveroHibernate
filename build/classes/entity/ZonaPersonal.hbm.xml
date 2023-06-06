@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="entity.ZonaPersonal" table="zona_personal" catalog="vivero" optimistic-lock="version">
+        <id name="idzona_personal" type="java.lang.Integer">
+                  <column name="idzona_personal" />
+                  <generator class="identity" />
+        </id>
+        <property name="fechahr_ini" type="date">
+                  <column name="fechahr_ini" length="10" not-null="true" />
+        </property>
+        <property name="fechahr_fin" type="date">
+                  <column name="fechahr_fin" length="10" not-null="true" />
+        </property>
+        <many-to-one name="personal" class="entity.Personal" fetch="select">
+                  <column name="Personal_Id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="zona" class="entity.Zona" fetch="select">
+                  <column name="Zona_idZona" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

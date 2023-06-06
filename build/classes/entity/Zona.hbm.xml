@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/11/2021 10:32:51 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Zona" table="zona" catalog="vivero" optimistic-lock="version">
+        <id name="idZona" type="java.lang.Integer">
+            <column name="idZona" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="vivero" class="entity.Vivero" fetch="select">
+            <column name="Vivero_idVivero" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="descripción" type="string">
+            <column name="descripción" length="45" not-null="true" />
+        </property>
+        <property name="superficie" type="java.lang.Float">
+            <column name="superficie" precision="12" scale="0" />
+        </property>
+        <set name="ambientes" table="ambiente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Zona_idZona" not-null="true" />
+            </key>
+            <one-to-many class="entity.Ambiente" />
+        </set>
+        <set name="existencias" table="existencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Zona_idZona" not-null="true" />
+            </key>
+            <one-to-many class="entity.Existencia" />
+        </set>
+        <set name="registros" table="zona_personal" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Zona_idZona" not-null="true" />
+            </key>
+            <one-to-many class="entity.ZonaPersonal" />
+        </set>
+    </class>
+</hibernate-mapping>
